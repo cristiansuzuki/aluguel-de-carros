@@ -1,5 +1,6 @@
 from django import forms
 from .models import *
+from django.contrib.auth.models import User
 
 
 class CarrosForm(forms.ModelForm):
@@ -61,4 +62,8 @@ class AluguelForm(forms.ModelForm):
                        'placeholder': 'Valor'}),
         }
 
+class UserModelForm(forms.ModelForm):
+    class Meta:
+        model = User 
+        fields = ('username', 'password')
 

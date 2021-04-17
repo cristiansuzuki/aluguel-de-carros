@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
+
 # Create your views here.
 @login_required
 def index(request):
@@ -91,8 +92,6 @@ def registro_clientes(request):
             return redirect('registro-clientes')
     else:
         form = ClienteForm()
-       
-
     title = 'Cadastro de clientes'
     titulo = 'Registrar novos clientes =)'
     return render(request, 'registro-clientes.html', {'form': form, 'titulo': titulo, 'title': title})
@@ -108,6 +107,14 @@ def registro_carros(request):
         form = CarrosForm()
     title = 'Cadastro de Automóveis'
     return render(request, 'registro-carros.html', {'form': form, 'titulo': 'Registrar novos automóveis =)', 'title': title})
+
+@login_required
+def registro_usuario(request):
+    form = UserModelForm(request.POST)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+    return render(request, 'registro-usuario.html', {'form': form})    
 
 ####### Listas #######
 
@@ -133,9 +140,6 @@ def buttons(request):
 def login(request):
     return render(request, 'login.html')
 
-@login_required
-def registro_usuario(request):
-    return render(request, 'registro-usuario.html')
 
 @login_required
 def forgot_password(request):
