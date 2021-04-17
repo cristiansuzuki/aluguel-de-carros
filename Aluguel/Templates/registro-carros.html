@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ title }} {% endblock %}
+{% block container %}
+
+<!-- Nested Row within Card Body -->
+<div class="d-flex align-items-center justify-content-center">
+    <div class="p-5" style="width:69%;">
+        <div class="text-center">
+            <h1 class="h4 mb-4" style="color: white;">{{ titulo }}</h1>
+        </div>
+
+        <form method="POST" class="user">{% csrf_token %}
+
+            <div class="form-group">
+                {{ form.carro }}
+            </div>
+
+            <div class="form-group">
+                {{ form.placa }}
+            </div>
+
+            <div class="form-group">
+                {{ form.cor }}
+            </div>
+
+            <div class="form-group">
+                {{ form.chassi }}
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-user btn-block">
+                Registrar
+            </button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

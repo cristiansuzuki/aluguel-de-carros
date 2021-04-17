@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ title }} {% endblock %}
+{% block container %}
+
+
+
+
+<!-- messages / alerts -->
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li {% if message.tags %} class="alert alert-{{message.tags}}"{% endif %} style="list-style: none;">{{message}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+
+<!-- Nested Row within Card Body -->
+<div class="d-flex align-items-center justify-content-center">
+    <div class="p-5" style="width:69%;">
+        <div class="text-center">
+            <h1 class="h4 mb-4" style="color: white;">{{ titulo }}</h1>
+        </div>
+
+        <form method="POST" class="user">{% csrf_token %}
+
+            <div class="form-group">
+                {{ form.nome_cliente }}
+            </div>
+
+            <div class="form-group">
+                {{ form.cpf }}
+            </div>
+
+            <div class="form-group">
+                {{ form.contato }}
+            </div>
+
+            <div class="form-group">
+                {{ form.email }}
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-user btn-block">
+                Registrar
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

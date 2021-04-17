@@ -1,0 +1,27 @@
+<!DOCTYPE >
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Login</title>
+
+    <link rel="icon" href="/..\static/img/carro.png" type="carro.png" />
+
+    <link rel="stylesheet" href="/..\static/css/login2.css">
+  </head>
+
+  <body>
+    <form class="box" method="POST"> {% csrf_token %}
+
+      <h1>Login</h1>
+
+      <!-- MÁGICA NÃO MEXA -->
+
+      <input type="text" placeholder="Usuário" id="{{ form.username }}
+      <input type="password" placeholder="Senha" id="{{ form.password }}
+
+      <input type="submit" name="" value="Login">
+
+    </form>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Lista de Carros {% endblock %}
+{% block container %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+
+    <div style="justify-content: center; align-items: center; display: flex;">
+        <h1 class="h3 mb-2" style="color: white;">Carros</h1>
+    </div>
+    
+        <a target="_blank">Todos os carros cadastrados</a>
+    <br>
+    <a href="{% url 'registro-carros' %}">Clique aqui para adicionar mais automóveis</a>.
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4" style="background: transparent;">
+        <div class="card-header py-3" style="background: transparent;">
+            <h6 class="m-0 font-weight-bold text-light">Tabela de carros</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" style="color: white;" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Marca e modelo</th>
+                        <th>Placa</th>
+                        <th>Cor</th>
+                        <th>Chassi</th>
+                        <th>Status</th>
+                        <th>Opções</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {% for carro in carros %}
+
+                    <tr>
+                        <td>{{ carro.carro }}</td>
+                        <td>{{ carro.placa }}</td>
+                        <td>{{ carro.cor }}</td>
+                        <td>{{ carro.chassi }}</td>
+                        <td>*</td>
+                        <td><a href="{% url 'editar-carros' carro.id %}"
+                               class="btn btn-info btn-icon-split"><span class="icon text-white-50"><i
+                                class="fas fa-flag"></i></span>
+                            <span class="text">Editar</span>
+                        </a>
+                            <a href="{% url 'excluir-carros' carro.id %}"
+                               class="btn btn-danger btn-icon-split"><span class="icon text-white-50"><i
+                                    class="fas fa-trash"></i></span>
+                                <span class="text">Excluir</span>
+
+                            </a></td>
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+{% endblock %}

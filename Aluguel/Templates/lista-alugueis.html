@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Lista de Alugueis {% endblock %}
+{% block container %}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+
+    <div style="justify-content: center; align-items: center; display: flex;">
+        <h1 class="h3 mb-2" style="color: white;">Alugueis</h1>
+    </div>
+    
+
+
+        <a target="_blank">Todos os alugueis cadastrados</a>
+    <br>
+    <a href="{% url 'cliente' %}">Clique aqui para fazer um aluguel</a>.
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4" style="background: transparent;">
+        <div class="card-header py-3" style="background: transparent;">
+            <h6 class="m-0 font-weight-bold text-light">Tabela de alugueis</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" style="color: white;" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Nome Cliente</th>
+                        <th>Carro</th>
+                        <th>Data saida</th>
+                        <th>Data Retorno</th>
+                        <th>Valor</th>
+                        <th>Excluir</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {% for listas in lista %}
+
+                    <tr>
+                        <td>{{ listas.cliente.nome_cliente }}</td>
+                        <td>{{ listas.carro }}</td>
+                        <td>{{ listas.data_saida }}</td>
+                        <td>{{ listas.data_retorno }}</td>
+                        <td>R$ {{ listas.valor }}</td>
+                        <td><a href="{% url 'excluir' listas.id %}" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                            <span class="text">Excluir</span>
+                        </a></td>
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+{% endblock %}

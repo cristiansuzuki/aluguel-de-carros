@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Lista de clientes {% endblock %}
+{% block container %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+
+    <div style="justify-content: center; align-items: center; display: flex;">
+        <h1 class="h3 mb-2" style="color: white;">Clientes</h1>  
+    </div>
+    
+    
+    <a target="_blank">
+        Todos os clientes cadastrados
+    </a>
+
+    <br>
+
+        <a href="{% url 'registro-clientes' %}">
+        
+            Clique aqui para adicionar mais clientes
+        </a>.
+
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4" style="background: transparent;">
+        <div class="card-header py-3" style="background: transparent;">
+            <h6 class="m-0 font-weight-bold text-light">Tabela de clientes</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" style="color: white;" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Nome Cliente</th>
+                        <th>CPF</th>
+                        <th>Contato</th>
+                        <th>E-Mail</th>
+                        <th>Status</th>
+                        <th>Opções</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {% for cliente in clientes %}
+
+                    <tr>
+                        <td>{{cliente.nome_cliente}}</td>
+                        <td>{{cliente.cpf}}</td>
+                        <td>{{cliente.contato}}</td>
+                        <td>{{cliente.email}}</td>
+                        <td>*</td>
+                        <td><a href="{% url 'registro-aluguel' cliente.id %}"
+                               class="btn btn-primary btn-icon-split"><span class="icon text-white-50"><i
+                                class="fas fa-flag"></i></span>
+                            <span class="text">Alugar</span>
+                        </a>
+
+                            <a href="{% url 'editar-clientes' cliente.id %}"
+                               class="btn btn-info btn-icon-split"><span class="icon text-white-50"><i
+                                    class="fas fa-info-circle"></i></span>
+                                <span class="text">Editar</span>
+                            </a>
+
+                            <a href="{% url 'excluir-clientes' cliente.id %}"
+                               class="btn btn-danger btn-icon-split"><span class="icon text-white-50"><i
+                                    class="fas fa-trash"></i></span>
+                                <span class="text">Excluir</span>
+
+                            </a></td>
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Cadastro Aluguel {% endblock %}
+{% block container %}
+
+<!-- Nested Row within Card Body -->
+<div class="d-flex align-items-center justify-content-center">
+    <div class="p-5" style="width:69%;">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Registrar Aluguel =)</h1>
+        </div>
+
+        <form method="POST" class="user">{% csrf_token %}
+
+            <div class="form-group">
+                 {{ form.carro }}
+            </div>
+
+            <div class="form-group">
+                 {{ form.data_saida }}
+            </div>
+
+            <div class="form-group">
+                 {{ form.data_retorno }}
+            </div>
+
+            <div class="form-group">
+                 {{ form.valor }}
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-user btn-block">
+                Registrar
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
