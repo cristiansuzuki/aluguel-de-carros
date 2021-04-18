@@ -10,47 +10,21 @@
             <h1 class="h4 text-gray-900 mb-4">{{ titulo }}</h1>
         </div>
 
-        <form method="POST" class="user"> {% csrf_token %}
+        <form method="POST" class="user" action="{% url 'registro-usuario' %}"> {% csrf_token %} 
+                <div class="form-group">
+                    <input type="text" name="nome-usuario" class="form-control form-control-user" placeholder="Username" 
+                    id='nome-usuario'>
+                </div>
 
+                <div class="form-group"> 
+                    <input type="email" name="email" class="form-control form-control-user" placeholder="Email Address"
+                    id='email'>
+                </div>
 
-                <input type="text" id="{{ form.username }}">
-    
-
-   
-                <input type="password" id="{{ form.password }}">
-
-
- 
-                <!-- <input type="text" id="{{ form.first_name }}">
-     
-
-
-                <input type="text" id="{{ form.last_name }}">
-    
-
-     
-                <input type="text" id="{{ form.email }}"> -->
-    
-
-            <!-- <div class="form-group">
-               {{ form.username }}
-            </div>
-
-            <div class="form-group">
-                {{ form.password }}
-            </div>
-
-            <div class="form-group">
-               {{ form.first_name }}
-            </div>
-
-            <div class="form-group">
-               {{ form.last_name }}
-            </div>
-
-            <div class="form-group">
-                {{ form.email }}
-            </div> -->
+                <div class="form-group">
+                    <input type="password" name="senha" class="form-control form-control-user" placeholder="Password" 
+                    id='senha'>
+                </div>
 
             <button type="submit" class="btn btn-primary btn-user btn-block">
                 Registrar

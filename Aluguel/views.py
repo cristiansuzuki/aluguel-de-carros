@@ -3,6 +3,8 @@ from .forms import *
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.views.decorators.http import require_POST
 
 
 
@@ -109,12 +111,24 @@ def registro_carros(request):
     return render(request, 'registro-carros.html', {'form': form, 'titulo': 'Registrar novos automóveis =)', 'title': title})
 
 @login_required
+def user(request):
+    title = 'Registro de usuario'
+    return render(request, 'registro-usuario.html', {'title': title})
+
+@require_POST
+@login_required
 def registro_usuario(request):
-    form = UserModelForm(request.POST)
-    if request.method == "POST":
-        if form.is_valid():
-            form.save()
-    return render(request, 'registro-usuario.html', {'form': form})    
+    try:
+        usuario_aux = User.objects.get(email=request.POST['email'])
+        if usuario_aux:
+            return render(request, 'caminho para o index', {'msg': 'Erro! Já existe um usuário com o mesmo e-mail'})
+    except User.DoesNotExist:
+        nome_usuario = request.POST['nome-usuario']
+        email = request.POST['email']
+        senha = request.POST['senha']
+        novoUsuario = User.objects.create_user(username=nome_usuario, email=email, password=senha)
+        novoUsuario.save()
+        return redirect('user')
 
 ####### Listas #######
 

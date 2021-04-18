@@ -65,5 +65,5 @@ class AluguelForm(forms.ModelForm):
 class UserModelForm(forms.ModelForm):
     class Meta:
         model = User 
-        fields = ('username', 'password')
+        fields = ('username', 'email', 'password')
 
