@@ -104,6 +104,7 @@ def registro_carros(request):
         form = CarrosForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, f'Automóvel criado com sucesso!')
             return redirect('registro-carros')
     else:
         form = CarrosForm()
@@ -128,6 +129,7 @@ def registro_usuario(request):
         senha = request.POST['senha']
         novoUsuario = User.objects.create_user(username=nome_usuario, email=email, password=senha)
         novoUsuario.save()
+        messages.success(request, f'Usuário criado com sucesso!')
         return redirect('user')
 
 ####### Listas #######

@@ -3,6 +3,20 @@
 {% block title %} {{ title }} {% endblock %}
 {% block container %}
 
+
+
+
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li {% if message.tags %} class="alert alert-success"{% endif %} style="list-style: none;">{{message}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+
 <!-- Nested Row within Card Body -->
 <div class="d-flex align-items-center justify-content-center">
     <div class="p-5" style="width:69%;">

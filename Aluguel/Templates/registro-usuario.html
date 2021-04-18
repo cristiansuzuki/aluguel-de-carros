@@ -3,11 +3,25 @@
 {% block title %} {{ title }} {% endblock %}
 {% block container %}
 
+
+
+<!-- messages / alerts -->
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li {% if message.tags %} class="alert alert-success"{% endif %} style="list-style: none;">{{message}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+
 <!-- Nested Row within Card Body -->
 <div class="d-flex align-items-center justify-content-center">
     <div class="p-5" style="width:69%;">
         <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">{{ titulo }}</h1>
+            <h1 class="h4 mb-4" style="color: white;">Registrar novos usuários =)</h1>
         </div>
 
         <form method="POST" class="user" action="{% url 'registro-usuario' %}"> {% csrf_token %} 
@@ -26,7 +40,7 @@
                     id='senha'>
                 </div>
 
-            <button type="submit" class="btn btn-primary btn-user btn-block">
+            <button type="submit" class="btn btn-dark btn-user btn-block">
                 Registrar
             </button>
         </form>
